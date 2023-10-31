@@ -31,6 +31,8 @@ public class HistoireTP4 {
 		roro.donner(marco);
 		marco.parler(""+marco.getQuantiteArgent());
 		roro.parler(""+roro.getQuantiteArgent());
+		
+		roro.provoquer(yaku);
 	}
 
 }
