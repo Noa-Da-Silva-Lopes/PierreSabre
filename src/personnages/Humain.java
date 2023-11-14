@@ -4,6 +4,9 @@ public class Humain {
 	private String nom;
 	private String boissonFavorite;
 	private int quantiteArgent;
+	protected int nbConnaissance=0;
+	protected Humain[] memoire=new Humain[30];
+	
 	
 	public Humain(String nom,String boissonFavorite,int quantiteArgent) {
 		this.nom=nom;
@@ -42,17 +45,49 @@ public class Humain {
 		}
 	}
 	
-	public int gagnerArgent(int gain) {
-		quantiteArgent=quantiteArgent+gain;
-		return quantiteArgent;
+	public void gagnerArgent(int gain) {
+		quantiteArgent+=gain;
 	}
 	
-	public int perdreArgent(int perte) {
+	public void perdreArgent(int perte) {
 		if (quantiteArgent-perte<=0) {
 			quantiteArgent=0;
 		} else {
-			quantiteArgent=quantiteArgent-perte;
+			quantiteArgent-=perte;
 		}
-		return quantiteArgent;
+	}
+	
+	private void memoriser(Humain humain) {
+		if (nbConnaissance<memoire.length) {
+			boolean verif=true;
+			for (int i = 0; i < nbConnaissance; i++) {
+				if (memoire[i]==humain) {
+					verif=false;	
+				}
+			}
+			if (verif==true) {
+				memoire[nbConnaissance]=humain;
+				nbConnaissance++;
+			}
+		} else {
+			for (int i = 1; i < memoire.length; i++) {
+				memoire[i-1]=memoire[i];
+			}
+		}
+	}
+	
+	public void listerConnaissance() {
+		StringBuilder chaine=new StringBuilder("Je connais beaucoup de monde dont :"+memoire[0].getNom());
+		for (int i = 1; i < this.nbConnaissance; i++) {
+			chaine.append(", "+memoire[i].getNom());
+		}
+		parler(chaine.toString());
+	}
+	
+	public void faireConnaissanceAvec(Humain autreHumain) {
+		this.direBonjour();
+		autreHumain.direBonjour();
+		this.memoriser(autreHumain);
+		autreHumain.memoriser(this);
 	}
 }

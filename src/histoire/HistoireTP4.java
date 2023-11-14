@@ -22,15 +22,14 @@ public class HistoireTP4 {
 		
 		Yakuza yaku=new Yakuza("Yaku Le Noir","whisky",30,"Warsong");
 		yaku.direBonjour();
-		yaku.parler("Tiens, tiens, ne serait-ce pas un faible marchand qui passe par l√† ?");
+		yaku.parler("Tiens, tiens, ne serait-ce pas un faible marchand qui passe par la† ?");
 		yaku.extorquer(marco);
 		yaku.parler("j'ai "+yaku.getReputation()+" de reputation");
 		
 		Ronins roro=new Ronins("Roro","Shochu",60);
 		roro.direBonjour();
 		roro.donner(marco);
-		marco.parler(""+marco.getQuantiteArgent());
-		roro.parler(""+roro.getQuantiteArgent());
+
 		
 		roro.provoquer(yaku);
 	}
